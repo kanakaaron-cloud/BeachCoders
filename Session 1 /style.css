@@ -5,9 +5,23 @@
 h2{
    font-size: medium; 
     font-family: Arial, Helvetica, sans-serif;
-    color: rgb(0, 94, 255); 
+    /* color: rgb(0, 94, 255);  */
 }
 
-ol{
-    color: rgb(0, 94, 255);
+
+
+.left-col{
+color: rgb(138, 86, 33);
+background-color: rgb(16, 93, 126);
+
+} 
+.right-col{
+    color: #090a01;
+    background-color: rgb(167, 116, 33);
+} 
+.statsButton{
+
+
+
+    background-color: #ede8e8;
 }
