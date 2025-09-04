@@ -14,14 +14,24 @@ goButton.addEventListener("click", function () {
     return __awaiter(this, void 0, void 0, function* () {
         // console.log("go button click");
         const cityInput = document.getElementById("cityInput");
-        const cityName = cityInput === null || cityInput === void 0 ? void 0 : cityInput.ariaValueMax;
-        const response = yield fetch(`http://api.weatherstack.com/current?access_key=${apiKey}&query=${cityName}`);
-        const data = yield response.json();
-        resultWeather.innerHTML = `
-      <h2>${data.location.name}, ${data.location.country}</h2>
-      <p>Temperature: ${data.current.temperature}°C</p>
-      <p>${data.current.weather_descriptions[0]}</p>
-      <img src="${data.current.weather_icons[0]}" alt="weather icon">
-      `;
+        const cityName = cityInput.value;
+        if (!cityName) {
+            resultWeather.innerHTML = "<p> Enter A City </p>";
+            return;
+        }
+        try {
+            const response = yield fetch(`http://api.weatherstack.com/current?access_key=${apiKey}&query=${cityName}`);
+            const data = yield response.json();
+            resultWeather.innerHTML = `
+        <h2>${data.location.name}, ${data.location.country}</h2>
+        <p>Temperature: ${data.current.temperature}°C</p>
+        <p>${data.current.weather_descriptions[0]}</p>
+        <img src="${data.current.weather_icons[0]}" alt="weather icon">
+        `;
+            console.log(`response: ${response.status}`);
+        }
+        catch (err) {
+            resultWeather.innerHTML = "<p>Error weather not found</p>";
+        }
     });
 });
